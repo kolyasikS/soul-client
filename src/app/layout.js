@@ -1,7 +1,8 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import '../styles/globals.css'
+import { Gantari } from 'next/font/google'
+import LayoutContainer from "../processes/layoutContainer/LayoutContainer";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Gantari({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,8 +11,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+      <LayoutContainer>
+        {children}
+      </LayoutContainer>
+      </body>
     </html>
   )
 }

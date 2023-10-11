@@ -1,0 +1,63 @@
+@import "src/styles/mixins";
+.day {
+    @include flexCenter(true);
+    width: 100%;
+    flex: calc(100% / 7);
+    background: #1d1e23;
+    height: 160px;
+    padding: 20px;
+    border: 1px solid #470c32;
+
+}
+
+.day__free {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.day__event_btn {
+    @include flexCenter();
+    width: 40px;
+    height: 40px;
+    background: #514c4c;
+    border-radius: 50%;
+    transition: all 0.2s;
+
+    &:hover {
+        background: #696464;
+    }
+
+    &::before, &::after {
+        content: '';
+        background: white;
+        position: absolute;
+    }
+
+    &::before {
+        width: 25px;
+        height: 3px;
+    }
+
+    &::after {
+        height: 25px;
+        width: 3px;
+    }
+}
+
+.day__match {
+    @include flexCenter(true);
+}
+
+.day__match_time {
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #15a620;
+}
+
+.day_training {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ecc3f2;
+}

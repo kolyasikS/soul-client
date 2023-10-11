@@ -1,0 +1,1 @@
+export {default as ClassicBtn} from './classic/ClassicButton';

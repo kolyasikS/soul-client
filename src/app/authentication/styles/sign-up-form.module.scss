@@ -1,0 +1,8 @@
+@import "src/styles/mixins";
+
+.form {
+    @include flexCenter(true);
+    background: inherit;
+    gap: 15px;
+}
+
