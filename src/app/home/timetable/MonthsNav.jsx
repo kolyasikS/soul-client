@@ -7,7 +7,6 @@ const MonthsNav = ({children, months, currentMonth}) => {
     const [activeMonth, setActiveMonth] = useState(months.find((month) => month.month === currentMonth));
     // console.log(months, currentMonth, activeMonth, activeMonth.title);
     function setMonth(month) {
-        console.log(month);
         if (month > 11) {
             month = 0;
         } else if (month < 0) {
@@ -18,7 +17,6 @@ const MonthsNav = ({children, months, currentMonth}) => {
             month = 4;
         }
         const newMonth = months.find((item) => item.month === month);
-        console.log(newMonth);
         setActiveMonth(newMonth);
     }
     return (

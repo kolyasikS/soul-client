@@ -3,6 +3,7 @@ import styles from '../styles/timetable.module.scss';
 import Month from "./Month";
 import Weekdays from "./Weekdays";
 import MonthsNav from "./MonthsNav";
+import {ClubController} from "../../../lib/controllers/club.controller";
 let Months = [
     {title: 'August', month: 7},
     {title: 'September', month: 8},
@@ -16,30 +17,50 @@ let Months = [
     {title: 'May', month: 4},
 ]
 async function getData() {
+    const timetable = await ClubController.getTimetable({clubId: '650c6c7649cba9b624f22334'});
     const currentYear = new Date().getFullYear();
     Months = Months.map((month, ind) => {
+        const games = timetable.games
+            .filter(game => {
+                const gameDate = new Date(game.date);
+                return gameDate.getMonth() === month.month;
+            })
+            .map(game => {
+                const gameDate = new Date(game.date);
+                return {...game, date: gameDate, day: gameDate.getDate()};
+            });
+
         if (ind < 5) {
             return {
-                component: <Month key={month.title} title={month.title} month={ind} year={currentYear}/>,
+                component: <Month key={month.title}
+                                  title={month.title}
+                                  month={ind}
+                                  year={currentYear}
+                                  games={games}
+                />,
                 title: month.title,
                 month: month.month
             }
         } else {
             return {
-                component: <Month key={month.title} title={month.title} month={ind} year={currentYear + 1}/>,
+                component: <Month key={month.title}
+                                  title={month.title}
+                                  month={ind}
+                                  year={currentYear + 1}
+                                  games={games}
+                />,
                 title: month.title,
                 month: month.month
             }
         }
     });
     return {
-        season: currentYear + '/' + (currentYear + 1),
+        season: timetable.season,
         currentMonth: new Date().getMonth()
     };
 }
 const Timetable = async () => {
     const data = await getData();
-    console.log('data', data, Months);
     return (
         <div className={styles.timetable}>
             <h2 className={styles.timetable__title}>Timetable</h2>
