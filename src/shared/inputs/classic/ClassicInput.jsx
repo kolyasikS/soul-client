@@ -1,8 +1,8 @@
 'use client';
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {memo, useEffect, useMemo, useState} from 'react';
 import styles from './classic-input.module.scss';
 import * as uuid from 'uuid';
-const ClassicInput = ({
+const ClassicInput = memo(({
                           children,
                           value,
                           setValue,
@@ -16,6 +16,7 @@ const ClassicInput = ({
     useEffect(() => {
         setId(uuid.v4());
     }, []);
+    console.log(value);
     return (
         <div className={styles.input__wrapper}
         >
@@ -38,6 +39,8 @@ const ClassicInput = ({
             <label htmlFor={id} className={styles.label}>{children}</label>
         </div>
     );
-};
+});
+
+ClassicInput.displayName = 'ClassicInput';
 
 export default ClassicInput;

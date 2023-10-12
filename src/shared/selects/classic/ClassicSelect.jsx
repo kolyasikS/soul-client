@@ -1,15 +1,14 @@
 'use client';
-import React from 'react';
+import React, {memo} from 'react';
 import {Select, Theme} from "@radix-ui/themes";
 import styles from './classic-select.module.scss';
 
-const ClassicSelect = ({placeholder,
+const ClassicSelect = memo(({placeholder,
                            label,
                            defaultValue,
                            items,
                            setSelectedItem
                        }) => {
-
     return (
         <div className={styles.select}>
             <Select.Root defaultValue={defaultValue}
@@ -37,6 +36,7 @@ const ClassicSelect = ({placeholder,
             </Select.Root>
         </div>
     );
-};
+});
 
+ClassicSelect.displayName = 'ClassicSelect';
 export default ClassicSelect;

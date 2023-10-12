@@ -1,13 +1,12 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import styles from './classic-calendar.module.scss';
 
-const ClassicCalendar = ({children, setDate, date}) => {
+const ClassicCalendar = memo(({children, setDate, date}) => {
     const [openCalendar, setOpenCalendar] = useState(false);
     console.log(date);
     const convertDateFormat = (date) => {
-        console.log(date);
         const year = date.getFullYear();
         let month = (date.getMonth() + 1).toString();
         let day = date.getDate().toString();
@@ -39,6 +38,7 @@ const ClassicCalendar = ({children, setDate, date}) => {
             />}
         </div>
     );
-};
+});
 
+ClassicCalendar.displayName = 'ClassicCalendar';
 export default ClassicCalendar;

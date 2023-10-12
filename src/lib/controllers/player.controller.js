@@ -22,9 +22,20 @@ export class PlayerController {
     }
     static async signUp({name, surname, username, password,
                             email, number, position,
-                            nation, birthday}) {
+                            nation, birthday, description}) {
         try {
-            const response = await $api.post('player');
+             const response = await $api.post('player', {
+                 name,
+                 surname,
+                 username,
+                 password,
+                 email,
+                 number: +number,
+                 position,
+                 nation,
+                 birthday,
+                 selfDescription: description
+             });
             if (response.error) {
                 return {
                     error: response.error
@@ -37,6 +48,7 @@ export class PlayerController {
                 error:
                     e?.response?.data?.error ??
                     'Internal server error. Try again!',
+                messages: e?.response?.data?.message,
             }
         }
     }

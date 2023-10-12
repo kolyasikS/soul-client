@@ -17,6 +17,8 @@ const ClassicTextArea = ({
             <TextArea
                 size="3"
                 placeholder={children}
+                value={value}
+                onChange={e => setValue(e.target.value)}
                 style={{
                     minHeight: minHeight ?? 200
                 }}
