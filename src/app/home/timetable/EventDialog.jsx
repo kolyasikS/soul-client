@@ -8,7 +8,7 @@ import {ClassicInput} from "../../../shared/inputs/api";
 import {ClassicBtn} from "../../../shared/buttons/api";
 import CreatingMatch from "./CreatingMatch";
 
-const EventDialog = ({editEvent, close}) => {
+const EventDialog = ({editEvent, close, day, month}) => {
     const [selectedHours, setSelectedHours] = useState();
     const [selectedMinutes, setSelectedMinutes] = useState();
     const [wrapperTranslation, setWrapperTranslation] = useState(0);
@@ -21,6 +21,7 @@ const EventDialog = ({editEvent, close}) => {
     });
     const getTime = () => {
         const date = new Date();
+        date.setMonth(month, day);
         date.setHours(selectedHours);
         date.setMinutes(selectedMinutes);
 

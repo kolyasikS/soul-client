@@ -34,7 +34,7 @@ async function getData() {
             return {
                 component: <Month key={month.title}
                                   title={month.title}
-                                  month={ind}
+                                  month={month.month}
                                   year={currentYear}
                                   games={games}
                 />,
@@ -45,7 +45,7 @@ async function getData() {
             return {
                 component: <Month key={month.title}
                                   title={month.title}
-                                  month={ind}
+                                  month={month.month}
                                   year={currentYear + 1}
                                   games={games}
                 />,

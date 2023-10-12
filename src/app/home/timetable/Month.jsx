@@ -9,13 +9,15 @@ async function getData(year, month) {
 }
 const Month = async ({title, year, month, games}) => {
     const amountDays = await getData(year, month);
-    console.log(games);
     return (
         <div className={styles.month}>
             <Weekdays/>
             <ul className={styles.day__list}>
                 {[...new Array(35)].map((day, ind) => {
-                    return <Day key={uuid.v4()} event={games.find(game => game.day - 1 === ind)}/>
+                    return <Day key={uuid.v4()}
+                                month={month}
+                                day={ind + 1}
+                                event={games.find(game => game.day - 1 === ind)}/>
                 })}
             </ul>
         </div>
