@@ -8,26 +8,30 @@ import EventDialog from "./EventDialog";
 import {ClubController} from "../../../lib/controllers/club.controller";
 import {DangerBtn} from "../../../shared/buttons/api";
 
-const Day = ({event, day, month}) => {
+const Day = ({event, day, month, isCurrentMonth}) => {
     const [eventDialog, setEventDialog] = useState(false);
     const [eventState, setEventState] = useState(event);
-    console.log(day, month, event);
     const editEvent = async (event) => {
         const res = await ClubController.addGame({...event, clubId: '650c6c7649cba9b624f22334'});
-        console.log(res);
         if (!res.error) {
             setEventState(event);
         }
     }
     const removeEvent = async () => {
         const res = await ClubController.removeGame(event.id);
-        console.log(res);
         if (!res.error) {
             setEventState(null);
         }
     }
+
+    if (!isCurrentMonth) {
+        return <div className={`${styles.day} ${styles.day__otherMonth}`}>
+            Other month
+        </div>
+    }
     return (
         <div className={styles.day}>
+            <span className={styles.day__num}>{day}</span>
             {eventDialog &&
                 <ClassicDialog onClick={() => setEventDialog(false)}>
                    <EventDialog editEvent={editEvent}

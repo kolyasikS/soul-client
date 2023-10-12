@@ -1,16 +1,30 @@
 'use client';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/sign-up-form.module.scss';
 import {ClassicInput, ClassicTextArea} from "../../../shared/inputs/api";
 import {ClassicSelect} from "../../../shared/selects/api";
 import {ClassicCalendar} from "../../../shared/calendars/api";
 import {UserTypes} from "../../../lib/enums/auth";
+import ClassicButton from "../../../shared/buttons/classic/ClassicButton";
+import {PlayerController} from "../../../lib/controllers/player.controller";
+import {useRouter} from "next/navigation";
 
 const Form = ({
                   nations,
                   userRole,
                   positions
               }) => {
+
+    const router = useRouter();
+
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [nation, setNation] = useState('');
+    const [description, setDescription] = useState('');
 
     const getOptionalFields = (role) => {
         let fields;
@@ -66,27 +80,32 @@ const Form = ({
     }
 
     const optionalFields = getOptionalFields(userRole);
+    const apply = async (e) => {
+        e.preventDefault();
 
+        const res = await PlayerController.signUp({});
+        if (!res.error) {
+            router.push('/home');
+        }
+    }
     return (
         <form className={styles.form}>
-            <ClassicInput>Name</ClassicInput>
-            <ClassicInput>Surname</ClassicInput>
-            <ClassicInput>Username</ClassicInput>
-            <ClassicInput>Password</ClassicInput>
-            <ClassicInput>Email</ClassicInput>
-            {/*<ClassicSelect
-                placeholder={'Pick a position'}
-                label={'Positions'}
-                items={positions}
-            />*/}
+            <ClassicInput value={name} setValue={setName}>Name</ClassicInput>
+            <ClassicInput value={name} setValue={setName}>Surname</ClassicInput>
+            <ClassicInput value={name} setValue={setName}>Username</ClassicInput>
+            <ClassicInput value={name} setValue={setName}>Password</ClassicInput>
+            <ClassicInput value={name} setValue={setName}>Email</ClassicInput>
             {optionalFields}
             <ClassicSelect
                 placeholder={'Nation'}
                 label={'Nations'}
+                setSelectedItem={setNation}
                 items={nations}
             />
-            <ClassicCalendar>Birthday</ClassicCalendar>
-            <ClassicTextArea>Description</ClassicTextArea>
+            <ClassicCalendar setDate={setBirthday} date={birthday}>Birthday</ClassicCalendar>
+            <ClassicTextArea value={description} setValue={setDescription}>Description</ClassicTextArea>
+
+            <ClassicButton onClick={apply}>Apply</ClassicButton>
         </form>
     );
 };

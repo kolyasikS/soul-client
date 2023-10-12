@@ -5,7 +5,9 @@ import styles from './classic-calendar.module.scss';
 
 const ClassicCalendar = ({children, setDate, date}) => {
     const [openCalendar, setOpenCalendar] = useState(false);
+    console.log(date);
     const convertDateFormat = (date) => {
+        console.log(date);
         const year = date.getFullYear();
         let month = (date.getMonth() + 1).toString();
         let day = date.getDate().toString();
@@ -18,23 +20,22 @@ const ClassicCalendar = ({children, setDate, date}) => {
             month = '0' + month;
         }
 
-        setDate({
-            year,
-            month,
-            day
-        })
+        return day + '.' + month + '.' + year;
     }
     return (
         <div className={styles.calendar__wrapper}>
             <h4 className={styles.calendar__title}
                 onClick={() => setOpenCalendar(!openCalendar)}
             >
-                {children} {date && (`&ndash; 22.05.2004`)}
+                {children} {date && convertDateFormat(date)}
             </h4>
             {openCalendar && <Calendar
                 className={styles.calendar}
                 allowPartialRange={false}
-                onClickDay={convertDateFormat}
+                onClickDay={(date) => {
+                    setDate(date);
+                    setOpenCalendar(false);
+                }}
             />}
         </div>
     );
