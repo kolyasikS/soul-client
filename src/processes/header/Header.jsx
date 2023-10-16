@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './header.module.scss';
 import Logo from "../../shared/logos/main/Logo";
+import Link from "next/link";
 
 const Header = () => {
     return (
@@ -9,9 +10,9 @@ const Header = () => {
                 <Logo/>
             </div>
             <nav className={styles.header__navbar}>
-                <li className={styles.header__navbar_item}>People</li>
-                <li className={styles.header__navbar_item}>Club</li>
-                <li className={styles.header__navbar_item}>Contact us</li>
+                <li className={styles.header__navbar_item}><Link href={''}>People</Link></li>
+                <li className={styles.header__navbar_item}><Link href={''}>Club</Link></li>
+                <li className={styles.header__navbar_item}><Link href={'/contacts'}>Contact us</Link></li>
             </nav>
             <div className={styles.header__features}>
                 <button className={styles.header__features_letters}>

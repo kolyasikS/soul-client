@@ -9,6 +9,7 @@
 
 .header__logo {
     background: inherit;
+
 }
 
 .header__navbar {
@@ -25,12 +26,17 @@
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer;
-    padding: 0 30px;
-    height: 100%;
     user-select: none;
     transition: all 0.1s;
+    height: 100%;
     &:hover {
         background: #314347;
+    }
+
+    a {
+        @include flexCenter();
+        padding: 0 30px;
+        height: 100%;
     }
 }
 
