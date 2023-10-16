@@ -10,7 +10,7 @@ const ClassicInput = memo(({
                           maxValue,
                           type,
                           placeholder,
-                          py, px,
+                          py, px, inputStyle
                       }) => {
     const [id, setId] = useState('')
     useEffect(() => {
@@ -33,7 +33,8 @@ const ClassicInput = memo(({
                     paddingTop: py,
                     paddingBottom: py,
                     paddingLeft: px,
-                    paddingRight: px
+                    paddingRight: px,
+                    ...inputStyle
                 }}
             />
             <label htmlFor={id} className={styles.label}>{children}</label>

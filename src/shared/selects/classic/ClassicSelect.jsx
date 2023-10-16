@@ -7,15 +7,19 @@ const ClassicSelect = memo(({placeholder,
                            label,
                            defaultValue,
                            items,
-                           setSelectedItem
+                           setSelectedItem,
+                                triggerStyle
                        }) => {
     return (
         <div className={styles.select}>
             <Select.Root defaultValue={defaultValue}
-                         onValueChange={(value) => setSelectedItem(value)} size={'3'}>
+                         onValueChange={(value) => setSelectedItem(value)}
+                         size={'3'}
+            >
                 <Select.Trigger
                     className={styles.select__trigger}
                     placeholder={placeholder}
+                    style={triggerStyle}
                 />
                 <Select.Content
                     position="popper"

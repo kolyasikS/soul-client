@@ -6,3 +6,11 @@
         flex-direction: column;
     }
 }
+
+@mixin sectionTitle() {
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    font-family: "DejaVu Sans", sans-serif;
+    font-weight: 800;
+}

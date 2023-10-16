@@ -22,6 +22,7 @@ const ClassicTextArea = ({
                 style={{
                     minHeight: minHeight ?? 200
                 }}
+
             />
         </div>
     );
