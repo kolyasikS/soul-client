@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className} style={{marginRight: '0px !important'}}>
       <LayoutContainer>
         {children}
       </LayoutContainer>

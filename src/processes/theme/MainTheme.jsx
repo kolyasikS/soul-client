@@ -3,7 +3,7 @@ import {Theme} from "@radix-ui/themes";
 
 const MainTheme = ({children}) => {
     return (
-        <Theme appearance={'dark'} style={{width: '100%'}}>
+        <Theme appearance={'dark'} style={{width: '100%', display: 'flex', alignItems: 'center'}}>
             {children}
         </Theme>
     );
