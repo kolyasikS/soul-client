@@ -16,7 +16,6 @@ const ClassicInput = memo(({
     useEffect(() => {
         setId(uuid.v4());
     }, []);
-    console.log(value);
     return (
         <div className={styles.input__wrapper}
         >

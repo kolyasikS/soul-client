@@ -13,10 +13,10 @@ export class AuthController {
                     error: signInResponse.error
                 };
             } else {
-                const {data: {access_token}} = signInResponse;
+                const {data} = signInResponse;
 
                 return {
-                    access_token
+                    access_token: data
                 };
             }
         } catch (e) {
@@ -26,6 +26,32 @@ export class AuthController {
         }
     }
 
+    static async verify(token) {
+        try {
+            const signInResponse = await $api.get('auth/verify',{
+                headers: {
+                    'Authorization': token
+                }
+            });
+
+            if (signInResponse.error) {
+                return {
+                    error: signInResponse.error
+                };
+            } else {
+                const {data} = signInResponse;
+
+                return {
+                    payload: data
+                };
+            }
+        } catch (e) {
+            console.log(e?.response?.data?.error ?? 'Internal server error. Try again!');
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
     static async getNations() {
         try {
             const response = await $api.get('auth/nations');

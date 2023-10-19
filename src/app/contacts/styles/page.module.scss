@@ -2,6 +2,8 @@
 @import "src/styles/variables";
 
 .contacts {
+    @include flexCenter(true);
+    width: 100%;
     padding: 100px 10px;
     background: $main-bg;
 }

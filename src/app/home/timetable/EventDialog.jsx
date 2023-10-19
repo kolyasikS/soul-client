@@ -4,8 +4,7 @@ import React, {useState} from 'react';
 import styles from '../styles/event-dialog.module.scss';
 import {ClassicSelect} from "../../../shared/selects/api";
 import {twoDigitsFormat} from "../../../lib/formatting/date";
-import {ClassicInput} from "../../../shared/inputs/api";
-import {ClassicBtn} from "../../../shared/buttons/api";
+import {ClassicButton} from "../../../shared/buttons/api";
 import CreatingMatch from "./CreatingMatch";
 
 const EventDialog = ({editEvent, close, day, month}) => {
@@ -83,10 +82,10 @@ const EventDialog = ({editEvent, close, day, month}) => {
                     <div className={styles.event__types}>
                         <h3 className={styles.event__types__title}>Event type</h3>
                         <div className={styles.event__types__btns}>
-                            <ClassicBtn onClick={addTraining}>Training</ClassicBtn>
-                            <ClassicBtn
+                            <ClassicButton onClick={addTraining}>Training</ClassicButton>
+                            <ClassicButton
                                 onClick={() => setWrapperTranslation(-370)}
-                            >Match</ClassicBtn>
+                            >Match</ClassicButton>
                         </div>
                     </div>
                 </div>

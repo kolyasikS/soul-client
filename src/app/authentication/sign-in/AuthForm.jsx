@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from "../styles/authentication.module.scss";
-import {ClassicBtn} from "../../../shared/buttons/api";
+import {ClassicButton} from "../../../shared/buttons/api";
 import {ClassicInput} from "../../../shared/inputs/api";
 import {ValidationError} from "../../../shared/errors/api";
 import {AuthController} from "../../../lib/controllers/auth.controller";
@@ -36,8 +36,8 @@ const AuthForm = ({authType, resetAuthType}) => {
                     </ClassicInput>
                     {error && <ValidationError>{error}</ValidationError>}
                     <div className={styles.authentication__form__buttons}>
-                        <ClassicBtn onClick={resetAuthType}>Cancel</ClassicBtn>
-                        <ClassicBtn onClick={auth}>Continue</ClassicBtn>
+                        <ClassicButton onClick={resetAuthType}>Cancel</ClassicButton>
+                        <ClassicButton onClick={auth}>Continue</ClassicButton>
                     </div>
                 </div>
             </div>

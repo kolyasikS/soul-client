@@ -11,7 +11,7 @@ const Header = () => {
                 <Logo/>
             </div>
             <nav className={styles.header__navbar}>
-                <li className={styles.header__navbar_item}><Link href={''}>People</Link></li>
+                <li className={styles.header__navbar_item}><Link href={'/people'}>People</Link></li>
                 <li className={styles.header__navbar_item}><Link href={''}>Club</Link></li>
                 <li className={styles.header__navbar_item}><Link href={'/contacts'}>Contact us</Link></li>
             </nav>

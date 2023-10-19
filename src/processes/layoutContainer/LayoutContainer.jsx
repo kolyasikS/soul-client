@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './layoutContainer.module.scss';
 import '@radix-ui/themes/styles.css';
 import Header from "../header/Header";
@@ -7,6 +7,7 @@ import Footer from "../footer/Footer";
 import MainTheme from "../theme/MainTheme";
 
 const LayoutContainer = ({children}) => {
+
     return (
         <>
             <Header/>

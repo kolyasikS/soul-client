@@ -1,8 +1,5 @@
 import React from 'react';
 import styles from './styles/page.module.scss';
-import {ClassicInput, ClassicTextArea} from "../../shared/inputs/api";
-import {ClassicSelect} from "../../shared/selects/api";
-import {UserTypes, UserTypesArray} from "../../lib/enums/auth";
 import Form from "./Form";
 
 const matters = [
@@ -12,6 +9,7 @@ const matters = [
     'For any other issues.',
 ]
 const Page = () => {
+
     return (
         <section className={styles.contacts}>
             <div className={styles.contacts__title_wrapper}>
