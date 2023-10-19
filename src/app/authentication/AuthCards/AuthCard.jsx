@@ -1,9 +1,7 @@
-
 import React from 'react';
-import Image from "next/image";
 import AuthButton from "./buttons/AuthButton";
 import styles from '../styles/auth-card.module.scss';
-import {AuthTypes} from "../../../lib/enums/auth";
+import {AuthTypes} from "@enums/auth";
 
 const AuthCard = ({
                       icon,

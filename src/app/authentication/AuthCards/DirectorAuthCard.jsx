@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthCard from "./AuthCard";
-import {AuthTypes, UserTypes} from "../../../lib/enums/auth";
+import {AuthTypes, UserTypes} from "@enums/auth";
 
 const DirectorAuthCard = ({setAuthType}) => {
 

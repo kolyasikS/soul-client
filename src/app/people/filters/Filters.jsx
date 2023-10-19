@@ -2,10 +2,10 @@
 
 import React, {useState} from 'react';
 import styles from '../styles/filters.module.scss';
-import {ClassicInput} from "../../../shared/inputs/api";
-import {ClassicSelect} from "../../../shared/selects/api";
-import {UserTypesArray} from "../../../lib/enums/auth";
-import ClassicButton from "../../../shared/buttons/classic/ClassicButton";
+import {ClassicInput} from "@shared/inputs/api";
+import {ClassicSelect} from "@shared/selects/api";
+import {UserTypesArray} from "@enums/auth";
+import ClassicButton from "@shared/buttons/classic/ClassicButton";
 const Filters = ({}) => {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');

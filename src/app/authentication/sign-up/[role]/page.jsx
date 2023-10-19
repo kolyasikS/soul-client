@@ -1,12 +1,9 @@
 import React from 'react';
 import Form from "../Form";
 import styles from '../../styles/sign-up.module.scss';
-import {PlayerController} from "../../../../lib/controllers/player.controller";
-import {AuthController} from "../../../../lib/controllers/auth.controller";
-import {useSearchParams} from "next/navigation";
-import {ClassicSelect} from "../../../../shared/selects/api";
-import {UserTypes} from "../../../../lib/enums/auth";
-import {ClassicInput} from "../../../../shared/inputs/api";
+import {PlayerController} from "@controllers/player.controller";
+import {AuthController} from "@controllers/auth.controller";
+import {UserTypes} from "@enums/auth";
 
 async function getData(role) {
     let positions;

@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "src/",
     "paths": {
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["assets/*"],
+      "@controllers/*": ["/lib/controllers/*"],
+      "@enums/*": ["/lib/enums/*"],
+      "@shared/*": ["shared/*"]
     }
   }
 }

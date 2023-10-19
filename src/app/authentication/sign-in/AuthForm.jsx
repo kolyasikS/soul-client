@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styles from "../styles/authentication.module.scss";
-import {ClassicButton} from "../../../shared/buttons/api";
-import {ClassicInput} from "../../../shared/inputs/api";
-import {ValidationError} from "../../../shared/errors/api";
-import {AuthController} from "../../../lib/controllers/auth.controller";
+import {ClassicButton} from "@shared/buttons/api";
+import {ClassicInput} from "@shared/inputs/api";
+import {ValidationError} from "@shared/errors/api";
+import {AuthController} from "@controllers/auth.controller";
 
 const AuthForm = ({authType, resetAuthType}) => {
     const [username, setUsername] = useState('');

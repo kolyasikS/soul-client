@@ -2,8 +2,8 @@
 
 import React, {useState} from 'react';
 import styles from './styles/edit-profile-dialog.module.scss';
-import {ClassicInput, ClassicTextArea} from "../../shared/inputs/api";
-import {ClassicButton} from "../../shared/buttons/api";
+import {ClassicInput, ClassicTextArea} from "@shared/inputs/api";
+import {ClassicButton} from "@shared/buttons/api";
 
 const EditProfileDialog = ({name, surname, username, bio, cancel, apply}) => {
     const [editUser, setEditUser] = useState({

@@ -1,8 +1,8 @@
 'use client'
 import React, {useState} from 'react';
-import {ClassicButton} from "../../shared/buttons/api";
+import {ClassicButton} from "@shared/buttons/api";
+import {ClassicDialog} from "@shared/dialogs/api";
 import EditProfileDialog from "./EditProfileDialog";
-import {ClassicDialog} from "../../shared/dialogs/api";
 
 const EditProfile = ({name, surname, username, bio}) => {
     const [editForm, setEditForm] = useState(false);

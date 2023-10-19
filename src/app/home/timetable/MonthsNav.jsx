@@ -3,9 +3,8 @@
 import React, {useState} from 'react';
 import styles from '../styles/months-nav.module.scss';
 
-const MonthsNav = ({children, months, currentMonth}) => {
+const MonthsNav = ({ months, currentMonth}) => {
     const [activeMonth, setActiveMonth] = useState(months.find((month) => month.month === currentMonth));
-    // console.log(months, currentMonth, activeMonth, activeMonth.title);
     function setMonth(month) {
         if (month > 11) {
             month = 0;

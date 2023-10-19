@@ -7,9 +7,9 @@ import DirectorAuthCard from "./AuthCards/DirectorAuthCard";
 import MedicAuthCard from "./AuthCards/MedicAuthCard";
 import styles from './styles/authentication.module.scss';
 import AuthForm from "./sign-in/AuthForm";
-import {ClassicDialog} from "../../shared/dialogs/api";
+import {ClassicDialog} from "@shared/dialogs/api";
 import {useRouter} from "next/navigation";
-import {AuthTypes, UserTypes} from "../../lib/enums/auth";
+import {AuthTypes, UserTypes} from "@enums/auth";
 
 const Page = () => {
     const [type, setType] = useState({

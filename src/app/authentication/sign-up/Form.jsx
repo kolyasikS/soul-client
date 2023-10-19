@@ -1,16 +1,16 @@
 'use client';
 import React, {createContext, useState} from 'react';
 import styles from '../styles/sign-up-form.module.scss';
-import {ClassicInput, ClassicTextArea} from "../../../shared/inputs/api";
-import {ClassicSelect} from "../../../shared/selects/api";
-import {ClassicCalendar} from "../../../shared/calendars/api";
-import {UserTypes} from "../../../lib/enums/auth";
-import ClassicButton from "../../../shared/buttons/classic/ClassicButton";
-import {PlayerController} from "../../../lib/controllers/player.controller";
+import {UserTypes} from "@enums/auth";
+import {ClassicInput, ClassicTextArea} from "@shared/inputs/api";
+import {ClassicSelect} from "@shared/selects/api";
+import {ClassicCalendar} from "@shared/calendars/api";
+import ClassicButton from "@shared/buttons/classic/ClassicButton";
+import {PlayerController} from "@controllers/player.controller";
+import {TrainerController} from "@controllers/trainer.controller";
+import {MedicController} from "@controllers/medic.controller";
+import {DirectorController} from "@controllers/director.controller";
 import {useRouter} from "next/navigation";
-import {TrainerController} from "../../../lib/controllers/trainer.controller";
-import {MedicController} from "../../../lib/controllers/medic.controller";
-import {DirectorController} from "../../../lib/controllers/director.controller";
 
 const MemberControllers = {
     [UserTypes.PLAYER.toLowerCase()]: PlayerController,

@@ -1,12 +1,11 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import styles from '../styles/day.module.scss';
 import {twoDigitsFormat} from "../../../lib/formatting/date";
-import {ClassicDialog} from "../../../shared/dialogs/api";
+import {ClassicDialog} from "@shared/dialogs/api";
 import EventDialog from "./EventDialog";
-import {ClubController} from "../../../lib/controllers/club.controller";
-import {DangerBtn} from "../../../shared/buttons/api";
+import {ClubController} from "@controllers/club.controller";
 
 const Day = ({event, day, month, isCurrentMonth}) => {
     const [eventDialog, setEventDialog] = useState(false);

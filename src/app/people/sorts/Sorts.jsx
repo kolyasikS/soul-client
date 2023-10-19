@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from '../styles/sorts.module.scss';
-import {ClassicSelect} from "../../../shared/selects/api";
+import {ClassicSelect} from "@shared/selects/api";
 
 const SortItems = [
     'Name',

@@ -2,9 +2,9 @@
 
 import React, {useState} from 'react';
 import styles from '../styles/event-dialog.module.scss';
-import {ClassicSelect} from "../../../shared/selects/api";
+import {ClassicSelect} from "@shared/selects/api";
 import {twoDigitsFormat} from "../../../lib/formatting/date";
-import {ClassicButton} from "../../../shared/buttons/api";
+import {ClassicButton} from "@shared/buttons/api";
 import CreatingMatch from "./CreatingMatch";
 
 const EventDialog = ({editEvent, close, day, month}) => {

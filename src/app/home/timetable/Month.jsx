@@ -1,6 +1,6 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import Weekdays from "./Weekdays";
-import Day, {DayTypes} from "./Day";
+import Day from "./Day";
 import * as uuid from 'uuid';
 import styles from '../styles/month.module.scss';
 async function getData(year, month) {

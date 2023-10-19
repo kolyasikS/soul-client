@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../styles/event-dialog.module.scss";
-import {ClassicInput} from "../../../shared/inputs/api";
-import ClassicButton from "../../../shared/buttons/classic/ClassicButton";
+import {ClassicInput} from "@shared/inputs/api";
+import ClassicButton from "@shared/buttons/classic/ClassicButton";
 
 const CreatingMatch = ({score, setScore, apply,
                            homeTeam, setHomeTeam,

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/person.module.scss';
 import {useRouter} from "next/navigation";
-import {ClassicButton} from "../../../shared/buttons/api";
+import {ClassicButton} from "@shared/buttons/api";
 
 const Person = ({}) => {
     const navigate = useRouter();
