@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Logo from "@shared/logos/main/Logo";
 import styles from './footer.module.scss';
 

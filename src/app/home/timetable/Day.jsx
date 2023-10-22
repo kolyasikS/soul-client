@@ -6,10 +6,13 @@ import {twoDigitsFormat} from "../../../lib/formatting/date";
 import {ClassicDialog} from "@shared/dialogs/api";
 import EventDialog from "./EventDialog";
 import {ClubController} from "@controllers/club.controller";
+import {useSelector} from "react-redux";
+import {UserTypes} from "../../../lib/enums/auth";
 
 const Day = ({event, day, month, isCurrentMonth}) => {
     const [eventDialog, setEventDialog] = useState(false);
     const [eventState, setEventState] = useState(event);
+    const userRole = useSelector(state => state.user.role);
     const editEvent = async (event) => {
         const res = await ClubController.addGame({...event, clubId: '650c6c7649cba9b624f22334'});
         if (!res.error) {
@@ -28,6 +31,8 @@ const Day = ({event, day, month, isCurrentMonth}) => {
             Other month
         </div>
     }
+
+    //console.log(userRole?.toLowerCase(), UserTypes.TRAINER.toLowerCase())
     return (
         <div className={styles.day}>
             <span className={styles.day__num}>{day}</span>
@@ -42,9 +47,9 @@ const Day = ({event, day, month, isCurrentMonth}) => {
             {!eventState
             ? <>
                 <p className={styles.day__free}>Free day</p>
-                <button className={styles.day__event_btn}
+                {userRole.toLowerCase() === UserTypes.TRAINER.toLowerCase() && <button className={styles.day__event_btn}
                         onClick={() => setEventDialog(true)}>
-                </button>
+                </button>}
             </>
             : <>
                 <div className={styles.day__event}>

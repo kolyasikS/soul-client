@@ -4,18 +4,26 @@ import {ClassicButton} from "@shared/buttons/api";
 import {ClassicInput} from "@shared/inputs/api";
 import {ValidationError} from "@shared/errors/api";
 import {AuthController} from "@controllers/auth.controller";
+import {useRouter} from "next/navigation";
+import {useDispatch} from "react-redux";
+import {setUser} from "../../../lib/store/slices/user.slice";
 
 const AuthForm = ({authType, resetAuthType}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const dispatch = useDispatch();
+    const router = useRouter();
     const auth = async () => {
         const res = await AuthController.signIn({username, password, userType: authType.userType});
+        console.log(res);
         if (res.error) {
             setError(res.error)
         } else {
-            window.localStorage.setItem('access_token', res.access_token);
-            resetAuthType();
+            // window.localStorage.setItem('access_token', res.access_token);
+            dispatch(setUser(res));
+            router.push('/home');
         }
     }
     return (

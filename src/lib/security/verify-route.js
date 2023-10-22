@@ -1,7 +1,7 @@
 import {AuthController} from "@controllers/auth.controller";
 const publicRoutes = [
     '/authentication',
-    '/favicon.ico']
+]
 
 function isRoutePublic(route) {
     for (let i = 0; i < publicRoutes.length; i++) {
@@ -12,11 +12,13 @@ function isRoutePublic(route) {
     return false;
 }
 
-export async function verifyRouteSecurity(url) {
+export async function verifyRouteSecurity(url, token) {
     if (isRoutePublic(url)) {
-        return true;
+        return {
+            isPublic: true,
+        };
     }
 
-    const res = await AuthController.verify();
-    return !res.error;
+    const res = await AuthController.verify(token);
+    return res;
 }

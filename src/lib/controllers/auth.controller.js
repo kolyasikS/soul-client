@@ -1,5 +1,4 @@
-import $api from "../http";
-
+import $api, {API_URL} from "../http";
 export class AuthController {
     static async signIn({username, password, userType}) {
         try {
@@ -7,6 +6,8 @@ export class AuthController {
                 username,
                 password,
                 role: userType.toUpperCase()
+            }, {
+                withCredentials: true,
             });
             if (signInResponse.error) {
                 return {
@@ -15,11 +16,29 @@ export class AuthController {
             } else {
                 const {data} = signInResponse;
 
-                return {
-                    access_token: data
-                };
+                return data;
             }
         } catch (e) {
+            console.log(e);
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
+    static async logout() {
+        try {
+            const signInResponse = await $api.get('auth/logout',{
+                withCredentials: true
+            });
+            if (signInResponse.error) {
+                return {
+                    error: signInResponse.error
+                };
+            } else {
+                return signInResponse.data;
+            }
+        } catch (e) {
+            console.log(e);
             return {
                 error: e?.response?.data?.error ?? 'Internal server error. Try again!',
             }
@@ -28,21 +47,19 @@ export class AuthController {
 
     static async verify(token) {
         try {
-            const signInResponse = await $api.get('auth/verify',{
+            const response = await fetch(`${API_URL}auth/verify`,{
+                method: 'GET',
                 headers: {
                     'Authorization': token
-                }
-            });
-
-            if (signInResponse.error) {
+                },
+            }).then(res => res.json());
+            if (response.error) {
                 return {
-                    error: signInResponse.error
+                    error: response.error
                 };
             } else {
-                const {data} = signInResponse;
-
                 return {
-                    payload: data
+                    ...response
                 };
             }
         } catch (e) {

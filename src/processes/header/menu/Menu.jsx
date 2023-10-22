@@ -4,9 +4,22 @@ import React from 'react';
 import {DropdownMenu} from "@radix-ui/themes";
 import styles from '../menu/menu.module.scss';
 import MainTheme from "../../theme/MainTheme";
+import {useRouter} from "next/navigation";
+import {AuthController} from "../../../lib/controllers/auth.controller";
+import {useDispatch} from "react-redux";
+import {clearUser} from "../../../lib/store/slices/user.slice";
 
 const Menu = () => {
-
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const logout = async () => {
+        const res = await AuthController.logout();
+        console.log(res);
+        if (res.ok) {
+            dispatch(clearUser());
+            router.push('/authentication');
+        }
+    }
     return (
         <MainTheme>
             <DropdownMenu.Root modal={false}>
@@ -43,7 +56,7 @@ const Menu = () => {
                         <DropdownMenu.Item>EN</DropdownMenu.Item>
                     </div>
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Item shortcut="⌘" color="red">
+                    <DropdownMenu.Item shortcut="⌘" color="red" onClick={logout}>
                         Log out
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>

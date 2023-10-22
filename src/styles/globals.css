@@ -94,13 +94,13 @@ body {
   position: relative;
   margin: 0 !important;
   background: #111113;
-  scrollbar-gutter: stable;
 }
 
 html {
 }
 body {
   color: rgb(var(--foreground-rgb));
+
   /*background: linear-gradient(
       to bottom,
       transparent,
