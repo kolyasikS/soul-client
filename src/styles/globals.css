@@ -94,9 +94,12 @@ body {
   position: relative;
   margin: 0 !important;
   background: #111113;
+  font-family: Cantarell, sans-serif;
+
 }
 
 html {
+  scrollbar-gutter: stable;
 }
 body {
   color: rgb(var(--foreground-rgb));

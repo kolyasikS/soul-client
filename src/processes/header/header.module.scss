@@ -22,12 +22,13 @@
 .header__navbar_item {
     @include flexCenter();
     list-style: none;
-    font-size: 24px;
+    font-size: 22px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     user-select: none;
     transition: all 0.1s;
+    font-family: Cantarell, sans-serif;
     height: 100%;
     &:hover {
         background: #314347;

@@ -64,7 +64,7 @@ const Day = ({event, day, month, isCurrentMonth}) => {
                         <p className={styles.day_training}>Training</p>
                     </div>}
                 </div>
-                <button className={styles.day__event_remove} onClick={removeEvent}></button>
+                {userRole.toLowerCase() === UserTypes.TRAINER.toLowerCase() && <button className={styles.day__event_remove} onClick={removeEvent}></button>}
             </>}
         </div>
     );

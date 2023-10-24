@@ -6,12 +6,13 @@ import styles from '../menu/menu.module.scss';
 import MainTheme from "../../theme/MainTheme";
 import {useRouter} from "next/navigation";
 import {AuthController} from "../../../lib/controllers/auth.controller";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {clearUser} from "../../../lib/store/slices/user.slice";
 
 const Menu = () => {
     const router = useRouter();
     const dispatch = useDispatch();
+    const username = useSelector(state => state.user.username);
     const logout = async () => {
         const res = await AuthController.logout();
         console.log(res);
@@ -19,6 +20,10 @@ const Menu = () => {
             dispatch(clearUser());
             router.push('/authentication');
         }
+    }
+
+    const toProfile = async () => {
+
     }
     return (
         <MainTheme>
@@ -47,10 +52,10 @@ const Menu = () => {
                                 </g>
                             </g>
                         </svg>
-                        danil_o
+                        {username}
                     </div>
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Item>My profile</DropdownMenu.Item>
+                    <DropdownMenu.Item onClick={toProfile}>My profile</DropdownMenu.Item>
                     <div className={styles.menu__languages}>
                         <DropdownMenu.Item>UA</DropdownMenu.Item>
                         <DropdownMenu.Item>EN</DropdownMenu.Item>

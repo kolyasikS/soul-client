@@ -13,6 +13,10 @@ export async function middleware(req) {
     if (user.error) {
         return NextResponse.redirect(new URL('/authentication', req.url));
     } else {
+        if (url.includes('authentication') && accessToken) {
+            console.log(1, accessToken, user, url);
+            return NextResponse.redirect(new URL('/home', req.url));
+        }
         const headers = new Headers(req.headers);
         headers.set('user', JSON.stringify(user));
         console.log('user', user);

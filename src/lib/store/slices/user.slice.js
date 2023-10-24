@@ -11,6 +11,10 @@ const userSlice = createSlice({
         setUser(state, action) {
             console.log(action);
             const user = action.payload;
+            if (!user) {
+                clearUser(state);
+                return;
+            }
             state.username = user.username;
             state.role = user.role;
         },

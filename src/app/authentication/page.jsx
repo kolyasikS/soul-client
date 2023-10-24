@@ -24,6 +24,7 @@ const Page = () => {
     }, [type]);
     return (
         <section className={styles.authentication}>
+            <h1 className={styles.authentication__title}>Authentication</h1>
             <div className={styles.authentication__cards}>
                 <PlayerAuthCard setAuthType={setType}/>
                 <TrainerAuthCard setAuthType={setType}/>

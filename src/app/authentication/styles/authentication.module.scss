@@ -2,11 +2,16 @@
 @import "src/styles/variables";
 
 .authentication {
-    @include flexCenter();
+    @include flexCenter(true);
     min-height: 100vh;
     position: relative;
     width: 100%;
     z-index: 10000;
+}
+
+.authentication__title {
+    font-size: 48px;
+    margin-bottom: 40px;
 }
 
 .authentication__cards {

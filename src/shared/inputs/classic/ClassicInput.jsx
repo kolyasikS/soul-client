@@ -16,6 +16,7 @@ const ClassicInput = memo(({
     useEffect(() => {
         setId(uuid.v4());
     }, []);
+    console.log(value);
     return (
         <div className={styles.input__wrapper}
         >
@@ -27,7 +28,7 @@ const ClassicInput = memo(({
                 className={styles.input}
                 placeholder={placeholder ?? ''}
                 value={value}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={(e) => setValue(e.target.value, children)}
                 style={{
                     paddingTop: py,
                     paddingBottom: py,
