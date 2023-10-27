@@ -3,7 +3,7 @@ import styles from '../styles/person.module.scss';
 import {useRouter} from "next/navigation";
 import {ClassicButton} from "@shared/buttons/api";
 
-const Person = ({}) => {
+const Person = ({name, surname, username, selfDescription, birthday, role}) => {
     const navigate = useRouter();
     const formatTextLength = (text, maxLength) => {
         if (text.length > maxLength) {
@@ -12,9 +12,16 @@ const Person = ({}) => {
 
         return text;
     }
+    const getYearsOld = (date) => {
+        const birthday = new Date(date);
+        const now = new Date();
+        const milliseconds = now - birthday;
 
+        const yearsOld = Math.trunc(milliseconds / 1000 / 60 / 60 / 24 / 365);
+        return yearsOld;
+    }
     const toProfile = () => {
-        navigate.push(`/${'danil_o'}`);
+        navigate.push(`/${username}`);
     }
     return (
         <div className={styles.person}>
@@ -32,14 +39,18 @@ const Person = ({}) => {
             </div>
             <div className={styles.person__info}>
                 <div className={styles.person__info_block}>
-                    <p className={styles.person__name}>Kolya</p>
-                    <p className={styles.person__surname}>Prymachenko</p>
+                    <p className={styles.person__name}>{name}</p>
+                    <p className={styles.person__surname}>{surname}</p>
                 </div>
                 <div className={styles.person__info_block}>
-                    <p className={styles.person__role}>Player</p>
-                    <p className={styles.person__years}>18 y.o.</p>
+                    <p className={styles.person__role}>{role}</p>
+                    <p className={styles.person__years}>{getYearsOld(birthday)} y.o.</p>
                 </div>
-                <p className={styles.person__description}>{formatTextLength('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 250)}</p>
+                <p className={styles.person__description}>
+                    {selfDescription
+                        ? formatTextLength(selfDescription, 250)
+                        : 'No bio'
+                    }</p>
                 <div className={styles.person__profile__link}>
                     <ClassicButton onClick={toProfile}>Go to profile</ClassicButton>
                 </div>

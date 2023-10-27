@@ -1,6 +1,7 @@
 @import "src/styles/mixins";
 
 .peopleList {
+    width: 100%;
 }
 
 .peopleList__inner {
@@ -15,4 +16,10 @@
     line-height: 100%;
     margin-bottom: 40px;
     font-weight: 700;
+}
+
+.peopleList__items {
+    @include flexCenter(true);
+    width: 100%;
+    gap: 20px;
 }

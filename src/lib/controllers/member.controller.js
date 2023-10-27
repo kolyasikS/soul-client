@@ -1,16 +1,17 @@
 import $api from "../http";
+import {ACCESS_TOKEN} from "../constraints/tokens";
 
 export class MemberController {
-    static async getPositions() {
+    static async getNations() {
         try {
-            const response = await $api.get('player/positions');
+            const response = await $api.get('auth/nations');
             if (response.error) {
                 return {
                     error: response.error
                 };
             } else {
-                const positions = response.data;
-                return positions;
+                const nations = response.data;
+                return nations;
             }
         } catch (e) {
             return {
@@ -20,5 +21,32 @@ export class MemberController {
             }
         }
     }
-
+    static async find({limit, offset, username, token}) {
+        try {
+            const response = await $api.get('member', {
+                params: {
+                    limit,
+                    offset,
+                    username
+                },
+                headers: {
+                    'Cookie': `${ACCESS_TOKEN}=${token};`,
+                },
+                withCredentials: true
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+            }
+        }
+    }
 }

@@ -2,15 +2,15 @@ import React from 'react';
 import Form from "../Form";
 import styles from '../../styles/sign-up.module.scss';
 import {PlayerController} from "@controllers/player.controller";
-import {AuthController} from "@controllers/auth.controller";
 import {UserTypes} from "@enums/auth";
+import {MemberController} from "../../../../lib/controllers/member.controller";
 
 async function getData(role) {
     let positions;
     if (role === UserTypes.PLAYER.toLowerCase()) {
         positions = await PlayerController.getPositions();
     }
-    const nations = await AuthController.getNations();
+    const nations = await MemberController.getNations();
     return {positions, nations};
 }
 const Page = async ({params}) => {

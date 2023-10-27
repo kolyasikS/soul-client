@@ -50,7 +50,7 @@ export class AuthController {
             const response = await fetch(`${API_URL}auth/verify`,{
                 method: 'GET',
                 headers: {
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 },
             }).then(res => res.json());
             if (response.error) {
@@ -66,25 +66,6 @@ export class AuthController {
             console.log(e?.response?.data?.error ?? 'Internal server error. Try again!');
             return {
                 error: e?.response?.data?.error ?? 'Internal server error. Try again!',
-            }
-        }
-    }
-    static async getNations() {
-        try {
-            const response = await $api.get('auth/nations');
-            if (response.error) {
-                return {
-                    error: response.error
-                };
-            } else {
-                const nations = response.data;
-                return nations;
-            }
-        } catch (e) {
-            return {
-                error:
-                    e?.response?.data?.error ??
-                    'Internal server error. Try again!',
             }
         }
     }

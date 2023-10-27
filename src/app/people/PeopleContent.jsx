@@ -4,8 +4,8 @@ import Filters from "./filters/Filters";
 import PeopleList from "./people/PeopleList";
 import Sorts from "./sorts/Sorts";
 
-const PeopleContent = ({initialPeople}) => {
-    const [people, setPeople] = useState(initialPeople);
+const PeopleContent = ({serverPeople}) => {
+    const [people, setPeople] = useState(serverPeople);
 
     return (
         <>

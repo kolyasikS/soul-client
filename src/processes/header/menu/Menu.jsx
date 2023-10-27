@@ -23,7 +23,7 @@ const Menu = () => {
     }
 
     const toProfile = async () => {
-
+        router.push(`/${username}`);
     }
     return (
         <MainTheme>
