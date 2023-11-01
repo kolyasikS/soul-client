@@ -6,6 +6,12 @@ import WithStoreProvider from "../processes/store-provider/WithStoreProvider";
 
 const inter = Gantari({ subsets: ['latin'] })
 
+export const metadata = {
+    icons: {
+        icon: '/icon.ico',
+    },
+}
+
 async function getAuthenticatedUser() {
     const headersList = headers();
     const user = JSON.parse(headersList.get('user'));

@@ -5,3 +5,13 @@ export function twoDigitsFormat(number) {
         return number;
     }
 }
+
+export function convertToString(dateString) {
+    const date = new Date(dateString);
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    return twoDigitsFormat(day) + '.' + twoDigitsFormat(month) + '.' + year;
+}

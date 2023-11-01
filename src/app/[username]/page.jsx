@@ -1,20 +1,21 @@
 import React from 'react';
 import styles from './styles/profile.module.scss';
-import EditProfile from "./EditProfile";
+import EditProfile from "./edit/EditProfile";
+import {MemberController} from "../../lib/controllers/member.controller";
+import {cookies} from "next/headers";
+import {ACCESS_TOKEN} from "../../lib/constraints/tokens";
+import {convertToString} from "../../lib/formatting/date";
+import ContactUser from "./contact/ContactUser";
 async function getData(username) {
+    const access_token = cookies().get(ACCESS_TOKEN);
+    const member = MemberController.findOne(username, access_token.value);
 
-    return {
-        name: 'Danil',
-        surname: 'Shelikhov',
-        username: 'danil_o',
-        email: 'danil.shelikhov@nure.ua',
-        nation: 'Ukrainian',
-        birthday: '02.05.2005',
-        bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    }
+    return member;
 }
 const Page = async ({params: {username}}) => {
     const user = await getData(username);
+    console.log(user);
+
     return (
         <section className={styles.profile}>
             <div className={styles.profile__inner}>
@@ -40,7 +41,14 @@ const Page = async ({params: {username}}) => {
                             name={user.name}
                             surname={user.surname}
                             username={user.username}
-                            bio={user.bio}
+                            bio={user.selfDescription}
+                        />
+                        <ContactUser
+                            name={user.name}
+                            surname={user.surname}
+                            username={user.username}
+                            email={user.email}
+                            role={user.role}
                         />
                     </div>
                 </div>
@@ -52,12 +60,12 @@ const Page = async ({params: {username}}) => {
                         </div>
                         <div className={styles.profile__info_block}>
                             <p className={styles.profile__info_item}><span>Nation:</span> {user.nation}</p>
-                            <p className={styles.profile__info_item}><span>Birthday:</span> {user.birthday}</p>
+                            <p className={styles.profile__info_item}><span>Birthday:</span> {convertToString(user.birthday)}</p>
                         </div>
                     </div>
                     <p className={styles.profile__info_item}><span>Club:</span> {user?.club ?? <span className={styles.profile__info_noClub}>has no club</span>}</p>
                     <p className={styles.profile__info_description_title}>Bio</p>
-                    <p className={styles.profile__info_description}>{user.bio}</p>
+                    <p className={styles.profile__info_description}>{user.selfDescription}</p>
                 </div>
             </div>
         </section>

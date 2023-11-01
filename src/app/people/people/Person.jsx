@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/person.module.scss';
-import {useRouter} from "next/navigation";
+import {useRouter} from 'next/navigation';
 import {ClassicButton} from "@shared/buttons/api";
 
 const Person = ({name, surname, username, selfDescription, birthday, role}) => {

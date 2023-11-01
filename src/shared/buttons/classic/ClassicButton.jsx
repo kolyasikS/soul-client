@@ -3,7 +3,8 @@ import styles from './classic-button.module.scss';
 const ClassicButton = ({
                            children,
                            onClick,
-                           variant
+                           variant,
+                           disabled
                        }) => {
     const variantClassName = useMemo(() => {
         let className = '';
@@ -19,7 +20,7 @@ const ClassicButton = ({
     }, [variant]);
     return (
         <button
-            className={`${styles.button} ${variantClassName}`}
+            className={`${styles.button} ${variantClassName} ${disabled ? styles.disabled : ''}`}
             onClick={onClick}
         >
             {children}

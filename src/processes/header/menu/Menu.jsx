@@ -9,10 +9,9 @@ import {AuthController} from "../../../lib/controllers/auth.controller";
 import {useDispatch, useSelector} from "react-redux";
 import {clearUser} from "../../../lib/store/slices/user.slice";
 
-const Menu = () => {
+const Menu = ({username}) => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const username = useSelector(state => state.user.username);
     const logout = async () => {
         const res = await AuthController.logout();
         console.log(res);
@@ -26,7 +25,7 @@ const Menu = () => {
         router.push(`/${username}`);
     }
     return (
-        <MainTheme>
+        <MainTheme zIndex={9999999}>
             <DropdownMenu.Root modal={false}>
                 <DropdownMenu.Trigger className={styles.menu__trigger}>
                     <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -40,7 +39,7 @@ const Menu = () => {
                         </g>
                     </svg>
                 </DropdownMenu.Trigger>
-                <DropdownMenu.Content>
+                <DropdownMenu.Content style={{zIndex: 999999}}>
                     <div className={`${styles.menu__profile_item} ${styles.menu__profile_account}`}>
                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width={30} fill="#000000">
                             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

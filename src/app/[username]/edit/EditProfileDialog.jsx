@@ -1,7 +1,7 @@
 'use client';
 
 import React, {useState} from 'react';
-import styles from './styles/edit-profile-dialog.module.scss';
+import styles from '../styles/edit-profile-dialog.module.scss';
 import {ClassicInput, ClassicTextArea} from "@shared/inputs/api";
 import {ClassicButton} from "@shared/buttons/api";
 

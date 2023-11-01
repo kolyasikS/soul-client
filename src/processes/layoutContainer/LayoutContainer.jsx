@@ -35,7 +35,6 @@ const LayoutContainer = ({children, user}) => {
         }
     }, []);
     useEffect(() => {
-        console.log(1);
         dispatch(setUser(user));
     }, [user]);
 

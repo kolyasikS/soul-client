@@ -1,37 +1,9 @@
 import $api from "../http";
-import {ACCESS_TOKEN} from "../constraints/tokens";
 
-export class MemberController {
-    static async getNations() {
+export class LetterController {
+    static async find(receiverUsername) {
         try {
-            const response = await $api.get('auth/nations');
-            if (response.error) {
-                return {
-                    error: response.error
-                };
-            } else {
-                const nations = response.data;
-                return nations;
-            }
-        } catch (e) {
-            return {
-                error:
-                    e?.response?.data?.error ??
-                    'Internal server error. Try again!',
-            }
-        }
-    }
-    static async find({limit, offset, username, token}) {
-        try {
-            const response = await $api.get('member', {
-                params: {
-                    limit,
-                    offset,
-                    username
-                },
-                headers: {
-                    'Cookie': `${ACCESS_TOKEN}=${token};`,
-                },
+            const response = await $api.get(`letter/${receiverUsername}`, {
                 withCredentials: true
             });
             if (response.error) {
@@ -39,7 +11,8 @@ export class MemberController {
                     error: response.error
                 };
             } else {
-                return response.data;
+                const positions = response.data;
+                return positions;
             }
         } catch (e) {
             return {
@@ -50,12 +23,9 @@ export class MemberController {
         }
     }
 
-    static async findOne(username, token) {
+    static async delete(id) {
         try {
-            const response = await $api.get(`member/${username}`, {
-                headers: {
-                    'Cookie': `${ACCESS_TOKEN}=${token};`,
-                },
+            const response = await $api.delete(`letter/${id}`, {
                 withCredentials: true
             });
             if (response.error) {
@@ -63,7 +33,8 @@ export class MemberController {
                     error: response.error
                 };
             } else {
-                return response.data;
+                const positions = response.data;
+                return positions;
             }
         } catch (e) {
             return {
@@ -74,4 +45,27 @@ export class MemberController {
         }
     }
 
+    static async toggleStatus(letterId, status) {
+        try {
+            const response = await $api.patch(`letter/status/${letterId}`, {
+                status
+            }, {
+                withCredentials: true
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                const positions = response.data;
+                return positions;
+            }
+        } catch (e) {
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+            }
+        }
+    }
 }
