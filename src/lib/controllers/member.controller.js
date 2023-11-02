@@ -1,4 +1,4 @@
-import $api from "../http";
+import $api from "../protocols";
 import {ACCESS_TOKEN} from "../constraints/tokens";
 
 export class MemberController {

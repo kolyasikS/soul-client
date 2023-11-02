@@ -8,6 +8,7 @@ import {useRouter} from "next/navigation";
 import {AuthController} from "../../../lib/controllers/auth.controller";
 import {useDispatch, useSelector} from "react-redux";
 import {clearUser} from "../../../lib/store/slices/user.slice";
+import {DefaultAvatar} from "@shared/logos/api";
 
 const Menu = ({username}) => {
     const router = useRouter();
@@ -28,7 +29,10 @@ const Menu = ({username}) => {
         <MainTheme zIndex={9999999}>
             <DropdownMenu.Root modal={false}>
                 <DropdownMenu.Trigger className={styles.menu__trigger}>
-                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                    <svg viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg"
+                         fill="#000000"
+                    >
                         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                         <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">

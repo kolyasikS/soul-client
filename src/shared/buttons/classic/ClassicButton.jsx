@@ -4,7 +4,9 @@ const ClassicButton = ({
                            children,
                            onClick,
                            variant,
-                           disabled
+                           disabled,
+                           px, py,
+                           style
                        }) => {
     const variantClassName = useMemo(() => {
         let className = '';
@@ -22,6 +24,13 @@ const ClassicButton = ({
         <button
             className={`${styles.button} ${variantClassName} ${disabled ? styles.disabled : ''}`}
             onClick={onClick}
+            style={{
+                paddingTop: py,
+                paddingBottom: py,
+                paddingRight: px,
+                paddingLeft: px,
+                ...style
+            }}
         >
             {children}
         </button>

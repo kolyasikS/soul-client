@@ -10,15 +10,17 @@ const ClassicInput = memo(({
                           maxValue,
                           type,
                           placeholder,
-                          py, px, inputStyle
+                          py, px,
+                               style,
+                               inputStyle,
                       }) => {
     const [id, setId] = useState('')
     useEffect(() => {
         setId(uuid.v4());
     }, []);
-    console.log(value);
     return (
         <div className={styles.input__wrapper}
+             style={style}
         >
             <input
                 id={id}

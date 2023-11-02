@@ -1,4 +1,4 @@
-import $api from "../http";
+import $api from "../protocols";
 
 export class ClubController {
     static async getTimetable({clubId}) {

@@ -1,4 +1,4 @@
-import $api, {API_URL} from "../http";
+import $api, {API_URL} from "../protocols";
 export class AuthController {
     static async signIn({username, password, userType}) {
         try {

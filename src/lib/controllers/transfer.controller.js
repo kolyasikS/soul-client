@@ -1,4 +1,4 @@
-import $api from "../http";
+import $api from "../protocols";
 
 export class TransferController {
     static async accept({directorUsername, memberUsername, role, id}) {
