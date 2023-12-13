@@ -17,12 +17,12 @@ const AuthForm = ({authType, resetAuthType}) => {
     const router = useRouter();
     const auth = async () => {
         const res = await AuthController.signIn({username, password, userType: authType.userType});
-        console.log(res);
         if (res.error) {
             setError(res.error)
         } else {
             // window.localStorage.setItem('access_token', res.access_token);
             dispatch(setUser(res));
+            window.localStorage.setItem('soul-user', JSON.stringify(res));
             router.push('/home');
         }
     }

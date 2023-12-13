@@ -1,5 +1,7 @@
 .select {
     width: 100%;
+    position: relative;
+    z-index: 9999;
 }
 
 .select__trigger {

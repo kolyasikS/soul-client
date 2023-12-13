@@ -9,7 +9,6 @@ const EditProfileDialog = ({name, surname, username, bio, cancel, apply}) => {
     const [editUser, setEditUser] = useState({
         name,
         surname,
-        username,
         bio
     })
     return (
@@ -28,12 +27,6 @@ const EditProfileDialog = ({name, surname, username, bio, cancel, apply}) => {
                 >
                     Surname
                 </ClassicInput>
-                <ClassicInput
-                    value={editUser.username}
-                    setValue={(username) => setEditUser({...editUser, username})}
-                >
-                    Username
-                </ClassicInput>
                 <div className={styles.dialog__block_description}>
                     <h3>Bio</h3>
                     <ClassicTextArea
@@ -46,7 +39,7 @@ const EditProfileDialog = ({name, surname, username, bio, cancel, apply}) => {
             </div>
             <div className={styles.dialog__options}>
                 <ClassicButton variant={'danger'} onClick={cancel}>Cancel</ClassicButton>
-                <ClassicButton onClick={apply}>Apply</ClassicButton>
+                <ClassicButton onClick={() => apply(editUser)}>Apply</ClassicButton>
             </div>
         </div>
     );

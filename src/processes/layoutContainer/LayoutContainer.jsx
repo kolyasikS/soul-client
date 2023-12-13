@@ -35,6 +35,7 @@ const LayoutContainer = ({children, user}) => {
         }
     }, []);
     useEffect(() => {
+        user = JSON.parse(localStorage.getItem('soul-user'));
         dispatch(setUser(user));
     }, [user]);
 

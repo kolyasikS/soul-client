@@ -9,8 +9,7 @@ export class ClubController {
                     error: response.error
                 };
             } else {
-                const timetable = response.data;
-                return timetable;
+                return response.data;
             }
         } catch (e) {
             return {
@@ -30,6 +29,8 @@ export class ClubController {
                 guestTeam,
                 clubId,
                 isTraining
+            }, {
+                withCredentials: true
             });
             if (response.error) {
 
@@ -49,7 +50,31 @@ export class ClubController {
             }
         }
     }
+    static async updateGame({score, gameId}) {
+        try {
+            const response = await $api.patch(`club/game/${gameId}`, {
+                score,
+            }, {
+                withCredentials: true
+            });
+            if (response.error) {
 
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+                messages: e?.response?.data?.message
+            }
+        }
+    }
     static async removeGame(id) {
         try {
             console.log(id);
@@ -71,4 +96,55 @@ export class ClubController {
             }
         }
     }
+    static async create({name, selfDescription, foundationDate, directorId}) {
+        try {
+            const response = await $api.post(`director/club`, {
+                name,
+                selfDescription,
+                foundationDate,
+                directorId
+            }, {
+                withCredentials: true
+            }
+            );
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+                messages: e?.response?.data?.message
+            }
+        }
+    }
+    static async findOne(id) {
+        try {
+            const response = await $api.get(`club/${id}`, {
+                withCredentials: true
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+                messages: e?.response?.data?.message
+            }
+        }
+    }
+
 }

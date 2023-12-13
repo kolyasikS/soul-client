@@ -6,17 +6,34 @@ import {ClassicInput} from "@shared/inputs/api";
 import {ClassicSelect} from "@shared/selects/api";
 import {UserTypesArray} from "@enums/auth";
 import ClassicButton from "@shared/buttons/classic/ClassicButton";
-const Filters = ({}) => {
+import {MemberController} from "../../../lib/controllers/member.controller";
+const Filters = ({setPeople}) => {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
-    const [role, setRole] = useState('');
+    const [role, setRole] = useState('Any');
 
     const find = async () => {
+        const {members} = await MemberController.find({
+            limit: 100,
+            offset: 0,
+            name: name ?? null,
+            surname: surname ?? null,
+            role: (role.toUpperCase() && role.toUpperCase() !== 'ANY') ? role.toUpperCase() : null
+        });
 
+        setPeople(members)
     }
 
     const clear = async () => {
+        setSurname('')
+        setName('')
+        setRole('Any')
+        const {members} = await MemberController.find({
+            limit: 100,
+            offset: 0,
+        });
 
+        setPeople(members)
     }
 
     return (
@@ -36,9 +53,10 @@ const Filters = ({}) => {
                     >
                         Surname
                     </ClassicInput>
-                    <ClassicSelect items={UserTypesArray}
+                    <ClassicSelect items={[...UserTypesArray, 'Any']}
                                    label={'Role'}
                                    placeholder={'Role'}
+                                   defaultValue={role}
                                    setSelectedItem={setRole}
                     />
                 </div>

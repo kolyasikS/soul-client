@@ -17,7 +17,6 @@ async function getPeople() {
 const Page = async () => {
 
     const data = await getPeople();
-    console.log(data);
     return (
         <section className={styles.people}>
             <div className={styles.people__inner}>

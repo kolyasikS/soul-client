@@ -7,16 +7,16 @@ import {twoDigitsFormat} from "../../../lib/formatting/date";
 import {ClassicButton} from "@shared/buttons/api";
 import CreatingMatch from "./CreatingMatch";
 
-const EventDialog = ({editEvent, close, day, month}) => {
-    const [selectedHours, setSelectedHours] = useState();
-    const [selectedMinutes, setSelectedMinutes] = useState();
+const EventDialog = ({editEvent, close, day, month, event}) => {
+    const [selectedHours, setSelectedHours] = useState(event?.date?.getHours() ?? undefined);
+    const [selectedMinutes, setSelectedMinutes] = useState(event?.date?.getMinutes() ?? undefined);
     const [wrapperTranslation, setWrapperTranslation] = useState(0);
 
-    const [homeTeam, setHomeTeam] = useState('');
-    const [guestTeam, setGuestTeam] = useState('');
+    const [homeTeam, setHomeTeam] = useState(event?.homeTeam ?? '');
+    const [guestTeam, setGuestTeam] = useState(event?.guestTeam ?? '');
     const [score, setScore] = useState({
-        homeTeam: '',
-        guestTeam: '',
+        homeTeam: event?.score?.homeTeam ?? '',
+        guestTeam: event?.score?.guestTeam ?? '',
     });
     const getTime = () => {
         const date = new Date();
@@ -41,7 +41,10 @@ const EventDialog = ({editEvent, close, day, month}) => {
             guestTeam,
             date: getTime(),
             isTraining: false,
-            score
+            score: {
+                homeTeam: isNaN(parseInt(score.homeTeam)) ? 0 : parseInt(score.homeTeam),
+                guestTeam: isNaN(parseInt(score.guestTeam)) ? 0 : parseInt(score.guestTeam)
+            }
         })
 
         close();
@@ -65,6 +68,7 @@ const EventDialog = ({editEvent, close, day, month}) => {
                         <ClassicSelect
                             placeholder={'Hours'}
                             label={'Hours'}
+                            defaultValue={selectedHours}
                             setSelectedItem={setSelectedHours}
                             items={[...new Array(24)].map((item, ind) => ({
                                 title: twoDigitsFormat(ind),
@@ -75,6 +79,7 @@ const EventDialog = ({editEvent, close, day, month}) => {
                         <ClassicSelect
                             placeholder={'Minutes'}
                             label={'Minutes'}
+                            defaultValue={twoDigitsFormat(selectedMinutes)}
                             setSelectedItem={setSelectedMinutes}
                             items={[...new Array(60)].map((item, ind) => twoDigitsFormat(ind))}
                         />

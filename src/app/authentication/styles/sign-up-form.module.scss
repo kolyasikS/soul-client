@@ -1,9 +1,13 @@
 @import "src/styles/mixins";
+@import "src/styles/variables";
 
 .form {
     @include flexCenter(true);
-    background: inherit;
+    background: $form-bg;
+    padding: 40px 30px;
+    border-radius: 10px;
     gap: 15px;
+    min-width: 400px;
 }
 
 .form__block {

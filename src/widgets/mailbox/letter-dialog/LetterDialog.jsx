@@ -16,6 +16,11 @@ const LetterDialog = ({content, letterId, close, id,
             id,
         });
         if (!res.error) {
+            const ctx = localStorage.getItem('soul-user')
+            if (ctx) {
+                const parsedCtx = JSON.parse(ctx);
+                localStorage.setItem('soul-user', JSON.stringify({...parsedCtx, clubId: res._id}));
+            }
             remove(id);
             close();
         }

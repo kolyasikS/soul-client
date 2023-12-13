@@ -4,7 +4,7 @@ import {ACCESS_TOKEN} from "../constraints/tokens";
 export class MemberController {
     static async getNations() {
         try {
-            const response = await $api.get('auth/nations');
+            const response = await $api.get('member/nations/list');
             if (response.error) {
                 return {
                     error: response.error
@@ -21,12 +21,16 @@ export class MemberController {
             }
         }
     }
-    static async find({limit, offset, username, token}) {
+    static async find({limit, offset, username, clubId, token, name = null, surname = null, role = null}) {
         try {
             const response = await $api.get('member', {
                 params: {
                     limit,
                     offset,
+                    clubId,
+                    name,
+                    surname,
+                    role,
                     username
                 },
                 headers: {

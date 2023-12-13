@@ -2,11 +2,11 @@ import React from 'react';
 import Person from "./Person";
 import styles from '../styles/people-list.module.scss';
 
-const PeopleList = ({people}) => {
+const PeopleList = ({people, isClubList = false}) => {
     return (
         <div className={styles.peopleList}>
             <div className={styles.peopleList__inner}>
-                <h1 className={styles.peopleList__title}>People</h1>
+                {!isClubList && <h1 className={styles.peopleList__title}>People</h1>}
                 <ul className={styles.peopleList__items}>
                     {people
                         ? people.map(member => <Person

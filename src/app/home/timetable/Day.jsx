@@ -8,15 +8,36 @@ import EventDialog from "./EventDialog";
 import {ClubController} from "@controllers/club.controller";
 import {useSelector} from "react-redux";
 import {UserTypes} from "../../../lib/enums/auth";
+import {ClassicButton} from "@shared/buttons/api";
 
 const Day = ({event, day, month, isCurrentMonth}) => {
     const [eventDialog, setEventDialog] = useState(false);
     const [eventState, setEventState] = useState(event);
+    const [isEditingEvent, setIsEditingEvent] = useState(false);
+
     const userRole = useSelector(state => state.user.role);
-    const editEvent = async (event) => {
-        const res = await ClubController.addGame({...event, clubId: '650c6c7649cba9b624f22334'});
-        if (!res.error) {
-            setEventState(event);
+    const addEvent = async (event) => {
+        if (isEditingEvent) {
+            const res = await ClubController.updateGame({
+                score: event.score,
+                gameId: eventState.id
+            });
+            if (!res.error) {
+                setEventState(event);
+            }
+            setIsEditingEvent(false)
+            return;
+        }
+
+        const ctx = localStorage.getItem('soul-user')
+        if (ctx) {
+            const parsedCtx = JSON.parse(ctx);
+            const res = await ClubController.addGame({
+                ...event,
+                clubId: parsedCtx.clubId});
+            if (!res.error) {
+                setEventState(event);
+            }
         }
     }
     const removeEvent = async () => {
@@ -31,17 +52,22 @@ const Day = ({event, day, month, isCurrentMonth}) => {
             Other month
         </div>
     }
-
     //console.log(userRole?.toLowerCase(), UserTypes.TRAINER.toLowerCase())
     return (
         <div className={styles.day}>
             <span className={styles.day__num}>{day}</span>
             {eventDialog &&
-                <ClassicDialog onClick={() => setEventDialog(false)}>
-                   <EventDialog editEvent={editEvent}
+                <ClassicDialog onClick={() => {
+                    setEventDialog(false)
+                    setIsEditingEvent(false)
+                }}>
+                   <EventDialog editEvent={addEvent}
+                                event={event}
                                 day={day}
                                 month={month}
-                                close={() => setEventDialog(false)}/>
+                                close={() => {
+                                    setEventDialog(false)
+                                }}/>
                 </ClassicDialog>
             }
             {!eventState
@@ -63,6 +89,12 @@ const Day = ({event, day, month, isCurrentMonth}) => {
                     : <div>
                         <p className={styles.day_training}>Training</p>
                     </div>}
+                    <ClassicButton py={0} style={{marginTop: 2}} onClick={() => {
+                        setEventDialog(true)
+                        setIsEditingEvent(true)
+                    }}>
+                        Edit
+                    </ClassicButton>
                 </div>
                 {userRole.toLowerCase() === UserTypes.TRAINER.toLowerCase() && <button className={styles.day__event_remove} onClick={removeEvent}></button>}
             </>}

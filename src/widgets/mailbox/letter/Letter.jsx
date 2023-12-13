@@ -25,29 +25,27 @@ const Letter = ({id, sender, title, receiver,
                 remove(id);
             }
         })
-    }, []);
+    }, [id]);
 
     const markAsRead = useCallback((e) => {
         e.stopPropagation();
         setLetterStatus(true);
         LetterController.toggleStatus(id, true).then(res => {
-            console.log(res);
             if (res.error) {
                 setLetterStatus(false);
             }
         });
-    }, []);
+    }, [id]);
 
     const markAsUnread = useCallback((e) => {
         e.stopPropagation();
         setLetterStatus(false);
         LetterController.toggleStatus(id, false).then(res => {
-            console.log(res);
             if (res.error) {
                 setLetterStatus(true);
             }
         });
-    }, []);
+    }, [id]);
     return (
         <>
             <div className={styles.letter} onClick={() => setLetterDialog(true)}>

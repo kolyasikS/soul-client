@@ -4,17 +4,16 @@ import EditProfile from "./edit/EditProfile";
 import {MemberController} from "../../lib/controllers/member.controller";
 import {cookies} from "next/headers";
 import {ACCESS_TOKEN} from "../../lib/constraints/tokens";
-import {convertToString} from "../../lib/formatting/date";
 import ContactUser from "./contact/ContactUser";
+import {convertDateToString} from "../../lib/formatting/date";
+import Club from "./Club";
 async function getData(username) {
     const access_token = cookies().get(ACCESS_TOKEN);
     const member = MemberController.findOne(username, access_token.value);
-
     return member;
 }
 const Page = async ({params: {username}}) => {
     const user = await getData(username);
-    console.log(user);
 
     return (
         <section className={styles.profile}>
@@ -42,14 +41,18 @@ const Page = async ({params: {username}}) => {
                             surname={user.surname}
                             username={user.username}
                             bio={user.selfDescription}
+                            role={user.role}
+                            id={user._id}
                         />
-                        <ContactUser
+                        {<ContactUser
                             name={user.name}
                             surname={user.surname}
                             username={user.username}
                             email={user.email}
                             role={user.role}
-                        />
+                            clubId={user.clubId}
+                            id={user._id}
+                        />}
                     </div>
                 </div>
                 <div className={styles.profile__right_block}>
@@ -60,10 +63,10 @@ const Page = async ({params: {username}}) => {
                         </div>
                         <div className={styles.profile__info_block}>
                             <p className={styles.profile__info_item}><span>Nation:</span> {user.nation}</p>
-                            <p className={styles.profile__info_item}><span>Birthday:</span> {convertToString(user.birthday)}</p>
+                            <p className={styles.profile__info_item}><span>Birthday:</span> {convertDateToString(user.birthday)}</p>
                         </div>
                     </div>
-                    <p className={styles.profile__info_item}><span>Club:</span> {user?.club ?? <span className={styles.profile__info_noClub}>has no club</span>}</p>
+                    <Club clubId={user.clubId}/>
                     <p className={styles.profile__info_description_title}>Bio</p>
                     <p className={styles.profile__info_description}>{user.selfDescription}</p>
                 </div>

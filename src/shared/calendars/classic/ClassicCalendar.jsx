@@ -5,7 +5,6 @@ import styles from './classic-calendar.module.scss';
 
 const ClassicCalendar = memo(({children, setDate, date}) => {
     const [openCalendar, setOpenCalendar] = useState(false);
-    console.log(date);
     const convertDateFormat = (date) => {
         const year = date.getFullYear();
         let month = (date.getMonth() + 1).toString();

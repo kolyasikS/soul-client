@@ -5,7 +5,8 @@ const initialState = {
     role: '',
     email: '',
     name: '',
-    surname: ''
+    surname: '',
+    clubId: ''
 }
 const userSlice = createSlice({
     name: 'user',
@@ -22,6 +23,7 @@ const userSlice = createSlice({
             state.username = user.username;
             state.email = user.email;
             state.role = user.role;
+            state.clubId = user.clubId;
         },
         clearUser(state) {
             state.name = '';
@@ -29,6 +31,7 @@ const userSlice = createSlice({
             state.username = '';
             state.email = '';
             state.role = '';
+            state.clubId = '';
         }
     }
 });

@@ -6,7 +6,7 @@ export function twoDigitsFormat(number) {
     }
 }
 
-export function convertToString(dateString) {
+export function convertDateToString(dateString) {
     const date = new Date(dateString);
 
     const year = date.getFullYear();

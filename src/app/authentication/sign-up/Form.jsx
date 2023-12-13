@@ -14,6 +14,7 @@ import {useRouter} from "next/navigation";
 import {ValidationError} from "@shared/errors/api";
 import extractErrors from "../../../lib/errors/extractErrors";
 import {ClassicDialog} from "@shared/dialogs/api";
+import {validate} from "uuid";
 
 const MemberControllers = {
     [UserTypes.PLAYER.toLowerCase()]: PlayerController,
@@ -74,7 +75,9 @@ const Form = ({
     const setDescription = useCallback((value) => {
         setUserMemo(value, 'description');
     }, []);
-
+    const setExperience = useCallback(value => {
+        setUserMemo(value, 'experience');
+    }, [])
     const getOptionalFields = (role) => {
         let fields;
         switch (role) {
@@ -82,11 +85,8 @@ const Form = ({
                 fields = <>
                     <div className={styles.form__block}>
                         <ClassicInput
-                            minValue={1}
-                            maxValue={99}
-                            type={'number'}
                             value={user.number}
-                            setValue={setUserMemo}
+                            setValue={setExperience}
                         >
                             Number
                         </ClassicInput>
@@ -108,11 +108,8 @@ const Form = ({
                 fields = <>
                     <div className={styles.form__block}>
                         <ClassicInput
-                            minValue={1}
-                            maxValue={99}
-                            type={'number'}
                             value={user.experience}
-                            setValue={setUserMemo}
+                            setValue={setExperience}
                         >
                             Work experience
                         </ClassicInput>
@@ -125,11 +122,8 @@ const Form = ({
                 fields = <>
                     <div className={styles.form__block}>
                         <ClassicInput
-                            minValue={1}
-                            maxValue={99}
-                            type={'number'}
                             value={user.experience}
-                            setValue={setUserMemo}
+                            setValue={setExperience}
                         >
                             Work experience
                         </ClassicInput>

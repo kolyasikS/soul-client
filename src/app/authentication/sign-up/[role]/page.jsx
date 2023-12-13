@@ -17,9 +17,8 @@ const Page = async ({params}) => {
     const {positions, nations} = await getData(params.role);
     // const searchParams = useSearchParams();
     // const userRole = searchParams.get('role');
-    console.log(params);
     const userRole = params.role.split('').map((item, ind) => !ind ? item.toUpperCase() : item).join('');
-
+    console.log(nations)
     return (
         <section className={styles.section}>
             <div className={styles.section__content}>

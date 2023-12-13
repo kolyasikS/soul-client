@@ -15,7 +15,6 @@ const Menu = ({username}) => {
     const dispatch = useDispatch();
     const logout = async () => {
         const res = await AuthController.logout();
-        console.log(res);
         if (res.ok) {
             dispatch(clearUser());
             router.push('/authentication');

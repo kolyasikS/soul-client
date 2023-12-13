@@ -80,4 +80,25 @@ export class TransferController {
         }
     }
 
+    static async fireMember({memberId, clubId, role}) {
+        try {
+            const response = await $api.post('transfer/fire', {
+                memberId, clubId, role
+            }, {withCredentials: true});
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            return {
+                error:
+                    e?.response?.data?.error ??
+                    'Internal server error. Try again!',
+            }
+        }
+    }
+
 }

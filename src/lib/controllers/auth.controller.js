@@ -69,4 +69,27 @@ export class AuthController {
             }
         }
     }
+
+    static async retrieve({userId, role}) {
+        try {
+            const response = await $api.post('auth/retrieve',{
+                userId,
+                role,
+            }, {
+                withCredentials: true,
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e?.response?.data?.error ?? 'Internal server error. Try again!');
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
 }
