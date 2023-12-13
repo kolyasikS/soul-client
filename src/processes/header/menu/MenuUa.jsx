@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearUser} from "../../../lib/store/slices/user.slice";
 import {DefaultAvatar} from "@shared/logos/api";
 
-const Menu = ({username}) => {
+const MenuUa = ({username}) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const logout = async () => {
@@ -27,7 +27,7 @@ const Menu = ({username}) => {
     }
 
     const toProfile = async () => {
-        router.push(`/en/${username}`);
+        router.push(`/ua/${username}`);
     }
     return (
         <MainTheme zIndex={9999999}>
@@ -62,14 +62,14 @@ const Menu = ({username}) => {
                         {username}
                     </div>
                     <DropdownMenu.Separator />
-                    <DropdownMenu.Item onClick={toProfile}>My profile</DropdownMenu.Item>
+                    <DropdownMenu.Item onClick={toProfile}>Мій профиль</DropdownMenu.Item>
                     <div className={styles.menu__languages}>
-                        <DropdownMenu.Item onClick={() => (window.location.href = window.location.href.replace('en', 'ua'))}>UA</DropdownMenu.Item>
-                        <DropdownMenu.Item onClick={() => (window.location.href = window.location.href.replace('en', 'ua'))}>EN</DropdownMenu.Item>
+                        <DropdownMenu.Item onClick={() => (window.location.href = window.location.href.replace('en', 'ua'))}>Укр</DropdownMenu.Item>
+                        <DropdownMenu.Item onClick={() => (window.location.href = window.location.href.replace('ua', 'en'))}>Англ</DropdownMenu.Item>
                     </div>
                     <DropdownMenu.Separator />
                     <DropdownMenu.Item shortcut="⌘" color="red" onClick={logout}>
-                        Log out
+                        Вийти
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
@@ -77,4 +77,4 @@ const Menu = ({username}) => {
     );
 };
 
-export default Menu;
+export default MenuUa;

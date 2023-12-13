@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './layoutContainer.module.scss';
 import '@radix-ui/themes/styles.css';
 import Header from "../header/Header";
@@ -9,6 +9,7 @@ import {Provider, useDispatch} from "react-redux";
 import store from "../../lib/store/store";
 import {setUser} from "../../lib/store/slices/user.slice";
 import {usePathname} from "next/navigation";
+import HeaderUA from "../header/HeaderUA";
 
 const LayoutContainer = ({children, user}) => {
     const dispatch = useDispatch();
@@ -38,10 +39,17 @@ const LayoutContainer = ({children, user}) => {
         user = JSON.parse(localStorage.getItem('soul-user'));
         dispatch(setUser(user));
     }, [user]);
-
+    const [language, setLanguage] = useState('en');
+    useEffect(() => {
+        if (window.location.href.includes('en')) {
+            setLanguage('en')
+        } else {
+            setLanguage('ua')
+        }
+    }, []);
     return (
         <>
-            {!isHeaderAndFooterHidden && <Header/>}
+            {!isHeaderAndFooterHidden && language === 'en' ? <Header/> : <HeaderUA/>}
                 <main className={styles.layoutContainer}>
                     <div className={styles.layoutContainer__inner}>
                         <MainTheme>

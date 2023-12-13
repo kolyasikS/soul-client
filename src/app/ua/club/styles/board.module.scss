@@ -1,0 +1,63 @@
+@import "src/styles/mixins";
+.newBlueChip {
+    width: 40px;
+    height: 40px;
+    background: blue;
+    border-radius: 50%;
+    position: relative;
+    @include flexCenter();
+    cursor: pointer;
+    &:hover {
+        background: darkblue;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        width: 20px;
+        height: 2px;
+        background: #fff;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 20px;
+        background: #fff;
+    }
+}
+.blueChip {
+    width: 40px;
+    height: 40px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    @include flexCenter();
+    cursor: pointer;
+}
+
+.newRedChip {
+    width: 40px;
+    height: 40px;
+    background: red;
+    border-radius: 50%;
+    position: relative;
+    @include flexCenter();
+    cursor: pointer;
+    &:hover {
+        background: darkred;
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        width: 20px;
+        height: 2px;
+        background: #fff;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 20px;
+        background: #fff;
+    }
+}

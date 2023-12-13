@@ -25,6 +25,29 @@ export class AuthController {
             }
         }
     }
+    static async signInAdmin({username, password}) {
+        try {
+            const signInResponse = await $api.post('auth/admin',{
+                username,
+                password,
+            }, {
+                withCredentials: true,
+            });
+            if (signInResponse.error) {
+                return {
+                    error: signInResponse.error
+                };
+            } else {
+
+                return signInResponse.data;
+            }
+        } catch (e) {
+            console.log(e);
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
     static async logout() {
         try {
             const signInResponse = await $api.get('auth/logout',{
@@ -92,4 +115,47 @@ export class AuthController {
             }
         }
     }
+
+    static async getSubscriptionPrice() {
+        try {
+            const response = await $api.get('club/subscription/get', {
+                withCredentials: true,
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e?.response?.data?.error ?? 'Internal server error. Try again!');
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
+
+    static async changePrice(price) {
+        try {
+            const response = await $api.post('admin/subscription', {
+                price
+            }, {
+                withCredentials: true,
+            });
+            if (response.error) {
+                return {
+                    error: response.error
+                };
+            } else {
+                return response.data;
+            }
+        } catch (e) {
+            console.log(e?.response?.data?.error ?? 'Internal server error. Try again!');
+            return {
+                error: e?.response?.data?.error ?? 'Internal server error. Try again!',
+            }
+        }
+    }
+
 }

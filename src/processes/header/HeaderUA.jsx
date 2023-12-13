@@ -6,8 +6,10 @@ import Menu from "./menu/Menu";
 import MailboxHeader from "./mailbox/MailboxHeader";
 import {useSelector} from "react-redux";
 import {selectUser, selectUsername} from "../../lib/store/selectors/user.selectors";
+import MailboxHeaderUA from "./mailbox/MailboxHeaderUA";
+import MenuUa from "./menu/MenuUa";
 
-const Header = () => {
+const HeaderUA = () => {
     const username = useSelector(selectUsername);
     const user = useSelector(selectUser);
     return (
@@ -16,19 +18,19 @@ const Header = () => {
                 <Logo/>
             </div>
             <nav className={styles.header__navbar}>
-                <li className={styles.header__navbar_item}><Link href={'/en/home'}>Home</Link></li>
-                <li className={styles.header__navbar_item}><Link href={'/en/people'}>People</Link></li>
-                {user.clubId && <li className={styles.header__navbar_item}><Link href={'/en/club'}>Club</Link></li>}
-                <li className={styles.header__navbar_item}><Link href={'/en/contacts'}>Contact us</Link></li>
+                <li className={styles.header__navbar_item}><Link href={'/ua/home'}>Головна</Link></li>
+                <li className={styles.header__navbar_item}><Link href={'/ua/people'}>Користувачі</Link></li>
+                {user.clubId && <li className={styles.header__navbar_item}><Link href={'/ua/club'}>Клуб</Link></li>}
+                <li className={styles.header__navbar_item}><Link href={'/ua/contacts'}>Зв'язатися з нами</Link></li>
             </nav>
             <div className={styles.header__features}>
-                <MailboxHeader username={username}/>
+                <MailboxHeaderUA username={username}/>
             </div>
             <div className={styles.header__profile_wrapper}>
-                <Menu username={username}/>
+                <MenuUa username={username}/>
             </div>
         </header>
     );
 };
 
-export default Header;
+export default HeaderUA;

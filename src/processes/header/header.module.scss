@@ -47,6 +47,7 @@
     @include flexCenter();
     gap: 10px;
     position: relative;
+    z-index: 999999999;
 }
 
 .header__features_letters {
